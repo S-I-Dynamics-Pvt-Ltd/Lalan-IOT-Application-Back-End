@@ -87,7 +87,7 @@ public class WastageService {
 
             return VarList.RSP_SUCCESS;
         } else {
-            
+
             return VarList.RSP_NO_DATA_FOUND;
         }
     }
@@ -109,4 +109,12 @@ public class WastageService {
             return VarList.RSP_NO_DATA_FOUND;
         }
     }
+
+    public WastageDTO addWastageReason(Integer iot_input_his_id, WastageDTO wastageDTO) {
+        String waste_reason = wastageDTO.getWaste_reason();
+        wastageRepo.saveWasteReasonById(iot_input_his_id, waste_reason);
+        WastageEntity existingEntity = wastageRepo.findByIotInputHisId(iot_input_his_id);
+        return modelMapper.map(existingEntity, WastageDTO.class);
+    }
+
 }

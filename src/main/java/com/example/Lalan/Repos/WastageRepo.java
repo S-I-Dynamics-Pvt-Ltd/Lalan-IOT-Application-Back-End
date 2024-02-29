@@ -1,6 +1,7 @@
 package com.example.Lalan.Repos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import com.example.Lalan.Entity.WastageEntity;
@@ -27,4 +28,10 @@ public interface WastageRepo extends JpaRepository<WastageEntity, Integer>  {
 
         @Query(value = sqlquerypart2, nativeQuery = true)
         public List<Map<ActiveObjectMap.Key, Value>> getWastageOrNot(Integer admin_id, Integer hisID, Integer oparation, Integer sysLength);
+
+        WastageEntity findByIotInputHisId(Integer iotInputHisId);
+
+        @Modifying
+        @Query("UPDATE WastageEntity w SET w.waste_reason = :waste_reason WHERE w.iotInputHisId = :iot_input_his_id")
+        void saveWasteReasonById(@Param("iot_input_his_id") Integer iot_input_his_id, @Param("waste_reason") String waste_reason);
 }

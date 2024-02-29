@@ -37,7 +37,8 @@ public class WastageController {
     }
 
     @GetMapping("/getWastageOrNot/{admin_id}/{hisID}/{oparation}/{sysLength}")
-    public List<Map<ActiveObjectMap.Key, Value>> getWastageOrNot(@PathVariable Integer admin_id, @PathVariable Integer hisID, @PathVariable Integer oparation, @PathVariable Integer sysLength) {
+    public List<Map<ActiveObjectMap.Key, Value>> getWastageOrNot(@PathVariable Integer admin_id,
+            @PathVariable Integer hisID, @PathVariable Integer oparation, @PathVariable Integer sysLength) {
         return wastageService.getWastageOrNot(admin_id, hisID, oparation, sysLength);
     }
 
@@ -59,11 +60,11 @@ public class WastageController {
         }
     }
 
-     @GetMapping("/searchWastage/{adminId}")
-    public ResponseEntity searchWastage(@PathVariable int adminId){
+    @GetMapping("/searchWastage/{adminId}")
+    public ResponseEntity searchWastage(@PathVariable int adminId) {
         try {
             ProductionTotDTO wastageDTO = wastageService.searchWastage(adminId);
-            if (wastageDTO !=null) {
+            if (wastageDTO != null) {
                 responseDTO.setCode(VarList.RSP_SUCCESS);
                 responseDTO.setMessage("Success");
                 responseDTO.setContent(wastageDTO);
@@ -83,7 +84,7 @@ public class WastageController {
     }
 
     @DeleteMapping("/deleteWastage/{totId}")
-    public ResponseEntity deleteWastage(@PathVariable int totId){
+    public ResponseEntity deleteWastage(@PathVariable int totId) {
         try {
             String res = wastageService.deleteWastage(totId);
             if (res.equals("00")) {
@@ -106,30 +107,30 @@ public class WastageController {
     }
 
     @PutMapping(value = "/updateWastage/{admin_id}")
-    public ResponseEntity updateWastage(@RequestBody ProductionTotDTO wastageDTO){
+    public ResponseEntity updateWastage(@RequestBody ProductionTotDTO wastageDTO) {
 
-        try{
+        try {
             String res = wastageService.updateAllWastage(wastageDTO);
-            if(res.equals("00")){
+            if (res.equals("00")) {
                 responseDTO.setCode(VarList.RSP_SUCCESS);
                 responseDTO.setMessage("Update Success");
                 responseDTO.setContent(wastageDTO);
                 return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
 
-            }else if(res.equals("01")){
+            } else if (res.equals("01")) {
                 responseDTO.setCode(VarList.RSP_DUPLICATED);
                 responseDTO.setMessage(" Added state not found");
                 responseDTO.setContent(wastageDTO);
                 return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
 
-            }else{
+            } else {
                 responseDTO.setCode(VarList.RSP_FAIL);
                 responseDTO.setMessage("Error Occurred");
                 responseDTO.setContent(null);
                 return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
 
             }
-        }catch(Exception ex){
+        } catch (Exception ex) {
             responseDTO.setCode(VarList.RSP_ERROR);
             responseDTO.setMessage(ex.getMessage());
             responseDTO.setContent(null);
@@ -137,7 +138,7 @@ public class WastageController {
         }
     }
 
-     // Update Actual_value by Id
+    // Update Actual_value by Id
     @PutMapping(value = "/updateWastageActualValue/{admin_id}")
     public ResponseEntity updateWastageActualValue(@RequestBody ProductionTotDTO wastageDTO) {
         try {
@@ -167,6 +168,29 @@ public class WastageController {
             responseDTO.setContent(null);
             return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
+
+    @PutMapping(value = "/addWastageReason/{iot_input_his_id}")
+    public ResponseEntity addWastageReason(@PathVariable Integer iot_input_his_id, @RequestBody WastageDTO wastageDTO) {
+        try {
+            wastageDTO = wastageService.addWastageReason(iot_input_his_id, wastageDTO);
+            if (wastageDTO != null) {
+                responseDTO.setCode(VarList.RSP_SUCCESS);
+                responseDTO.setMessage("Update Success");
+                responseDTO.setContent(wastageDTO);
+                return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+            } else {
+                responseDTO.setCode(VarList.RSP_FAIL);
+                responseDTO.setMessage("Error Occurred");
+                responseDTO.setContent(null);
+                return new ResponseEntity(responseDTO, HttpStatus.BAD_REQUEST);
+            }
+        } catch (Exception ex) {
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(ex.getMessage());
+            responseDTO.setContent(null);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
