@@ -125,6 +125,25 @@ public class JobRegistrationController {
 
         }
     }
+
+    @GetMapping("/getAllJobsByProductionOrder")
+    public ResponseEntity getAllJobsByProductionOrder(){
+        try {
+            List<AdminDTO> jobList = jobRegistraionService.getAllJobsByProductionOrder();
+            responseDTO.setCode(VarList.RSP_SUCCESS);
+            responseDTO.setMessage("Success!");
+            responseDTO.setContent(jobList);
+            return new ResponseEntity(responseDTO, HttpStatus.ACCEPTED);
+
+        }catch (Exception ex){
+            responseDTO.setCode(VarList.RSP_ERROR);
+            responseDTO.setMessage(ex.getMessage());
+            responseDTO.setContent(null);
+            return new ResponseEntity(responseDTO, HttpStatus.INTERNAL_SERVER_ERROR);
+
+        }
+    }
+
     //--------------------------------------------------------------------------------------------------
     //Search job details using jobId...
     @GetMapping("/searchRegisteredJob/{jobId}")

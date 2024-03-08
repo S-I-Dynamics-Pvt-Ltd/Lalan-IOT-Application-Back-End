@@ -72,6 +72,14 @@ public class JobRegistraionService {
         }.getType());
     }
 
+    public List<AdminDTO> getAllJobsByProductionOrder() {
+        List<AdminEntity> jobList = adminRepo.findLatestJobsByProductionOrder();
+
+        return modelMapper.map(jobList, new TypeToken<ArrayList<AdminDTO>>() {
+        }.getType());
+    }
+
+
     // -----------------------------------------------------------------------------------------------------
     // Search job details using jobId...
     public JobRegistrationDTO searchRegisteredJob(String jobId) {

@@ -250,4 +250,8 @@ public interface AdminRepo extends JpaRepository<AdminEntity, Integer> {
         @Query("SELECT a FROM AdminEntity a WHERE (a.job_id_ad, a.production_end_datetime) IN " +
            "(SELECT a.job_id_ad, MAX(a.production_end_datetime) FROM AdminEntity a GROUP BY a.job_id_ad) order by a.production_end_datetime desc")
         List<AdminEntity> findLatestJobsByJobIdAndProductionEndDatetime();
+
+        @Query("SELECT a FROM AdminEntity a WHERE (a.job_id_ad, a.production_order) IN " +
+           "(SELECT a.job_id_ad, MAX(a.production_order) FROM AdminEntity a GROUP BY a.job_id_ad) order by a.production_order desc")
+        List<AdminEntity> findLatestJobsByProductionOrder();
 }
