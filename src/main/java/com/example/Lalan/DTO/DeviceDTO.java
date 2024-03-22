@@ -13,6 +13,7 @@ import javax.persistence.Id;
 @Data
 public class DeviceDTO {
 
+    
     private String  deviceID_dvcReg;
     private int dvc_id;
     private String  deviceName_dvcReg;
@@ -22,8 +23,6 @@ public class DeviceDTO {
     private String deviceIpAddress;
     private String description;
     private String parameter_id;
-    private int min_value;
-    private int max_value;
     private String measuring_unit;
     private String is_it_starter_value;
     private int completed_prod_count;

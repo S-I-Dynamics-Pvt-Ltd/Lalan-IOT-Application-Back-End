@@ -22,8 +22,6 @@ public class DeviceEntity {
     private String deviceIpAddress;
     private String description;
     private String parameter_id;
-    private int min_value;
-    private int max_value;
     private String measuring_unit;
     private int is_it_starter_value;
     private int completed_prod_count;

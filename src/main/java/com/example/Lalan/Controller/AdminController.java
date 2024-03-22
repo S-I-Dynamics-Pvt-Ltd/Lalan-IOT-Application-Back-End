@@ -88,7 +88,7 @@ public class AdminController {
     // }
 
     
-        @GetMapping("/postcurrentdata/{Jobid}/{batchid}/{itemWidth}/{itemLength}/{itemThikness}/{strappingColor}/{printedorUnprinted}/{strappingPrintColor}/{corePrintedorUnprinted}/{strappingType}/{batchStart}/{batchEnd}/{productId}/{LineId}/{Date}/{productionOrder}/{customerId}/{crudOperation}/{RollNumber}/{rollLength}/{rollWeight}/{operatorName}/{shift}/{salesOfficer}/{adminId}")
+        @GetMapping("/postcurrentdata/{Jobid}/{batchid}/{itemWidth}/{itemLength}/{itemThikness}/{strappingColor}/{printedorUnprinted}/{strappingPrintColor}/{corePrintedorUnprinted}/{strappingType}/{batchStart}/{batchEnd}/{productId}/{LineId}/{Date}/{productionOrder}/{customerId}/{crudOperation}/{RollNumber}/{rollLength}/{rollWeight}/{operatorName}/{shift}/{salesOfficer}/{adminId}/{productType}")
     public List<Map<ActiveObjectMap.Key, Value>> postcurrentprocess (@PathVariable String Jobid,@PathVariable String batchid,@PathVariable String itemWidth,
                                                                      @PathVariable String itemLength,@PathVariable String itemThikness, @PathVariable String strappingColor,
                                                                      @PathVariable String printedorUnprinted, @PathVariable String strappingPrintColor, @PathVariable String corePrintedorUnprinted,
@@ -99,7 +99,7 @@ public class AdminController {
                                                                      @PathVariable int customerId,
                                                                      @PathVariable int crudOperation, @PathVariable String RollNumber,@PathVariable String rollLength,
                                                                      @PathVariable  String rollWeight, @PathVariable String operatorName,
-                                                                     @PathVariable String shift,@PathVariable String salesOfficer,@PathVariable String adminId)
+                                                                     @PathVariable String shift,@PathVariable String salesOfficer,@PathVariable String adminId, @PathVariable int productType)
     {
         return adminService.postcurrentdata( Jobid,batchid
                 ,   itemWidth,  itemLength,  itemThikness,
@@ -107,7 +107,7 @@ public class AdminController {
     batchStart,  batchEnd,
     productId,  LineId,  prodictedDate,  productionOrder,
     customerId,  crudOperation,  RollNumber,  rollLength,  rollWeight,  operatorName,
-    shift,  salesOfficer, adminId);
+    shift,  salesOfficer, adminId, productType);
 }
 
 
@@ -120,10 +120,10 @@ public class AdminController {
 
 
      //Device Registration
-     @GetMapping("/DeviceRegistration/{lineId}/{machineId_2}/{machineName}/{machineDescription}/{deviceId}/{parameterId}/{des}/{isitalarmPara}/{completed_prod_count}/{isitstarterValue}/{minVal}/{maxVal}/{mesuringUnit}/{massage}/{deviceLocation}/{deviceIpAddress}/{deviceName}/{crudOperation}")
-     public List<Map<ActiveObjectMap.Key, Value>> DeviceRegistration (@PathVariable String lineId, @PathVariable String machineId_2, @PathVariable String machineName, @PathVariable String machineDescription, @PathVariable String deviceId, @PathVariable String parameterId, @PathVariable String des, @PathVariable int isitalarmPara, @PathVariable int completed_prod_count, @PathVariable int isitstarterValue, @PathVariable int minVal, @PathVariable int maxVal, @PathVariable String mesuringUnit, @PathVariable String massage, @PathVariable String deviceLocation, @PathVariable String deviceIpAddress, @PathVariable String deviceName, @PathVariable int crudOperation)
+     @GetMapping("/DeviceRegistration/{lineId}/{machineId_2}/{machineName}/{machineDescription}/{deviceId}/{parameterId}/{des}/{isitalarmPara}/{completed_prod_count}/{isitstarterValue}/{minValPro1}/{maxValPro1}/{minValPro2}/{maxValPro2}/{minValPro3}/{maxValPro3}/{minValPro4}/{maxValPro4}/{mesuringUnit}/{massage}/{deviceLocation}/{deviceIpAddress}/{deviceName}/{crudOperation}")
+     public List<Map<ActiveObjectMap.Key, Value>> DeviceRegistration (@PathVariable String lineId, @PathVariable String machineId_2, @PathVariable String machineName, @PathVariable String machineDescription, @PathVariable String deviceId, @PathVariable String parameterId, @PathVariable String des, @PathVariable int isitalarmPara, @PathVariable int completed_prod_count, @PathVariable int isitstarterValue, @PathVariable int minValPro1, @PathVariable int maxValPro1, @PathVariable int minValPro2, @PathVariable int maxValPro2, @PathVariable int minValPro3, @PathVariable int maxValPro3, @PathVariable int minValPro4, @PathVariable int maxValPro4, @PathVariable String mesuringUnit, @PathVariable String massage, @PathVariable String deviceLocation, @PathVariable String deviceIpAddress, @PathVariable String deviceName, @PathVariable int crudOperation)
              {
-         return adminService.DeviceRegistration(lineId,machineId_2,machineName,machineDescription,deviceId,parameterId,des,isitalarmPara,completed_prod_count,isitstarterValue, minVal, maxVal, mesuringUnit, massage, deviceLocation, deviceIpAddress, deviceName, crudOperation);
+         return adminService.DeviceRegistration(lineId,machineId_2,machineName,machineDescription,deviceId,parameterId,des,isitalarmPara,completed_prod_count,isitstarterValue, minValPro1, maxValPro1, minValPro2, maxValPro2, minValPro3, maxValPro3, minValPro4, maxValPro4, mesuringUnit, massage, deviceLocation, deviceIpAddress, deviceName, crudOperation);
      }
 
 

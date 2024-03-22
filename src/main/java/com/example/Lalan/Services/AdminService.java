@@ -89,13 +89,13 @@ public class AdminService {
             String productId, String LineId, Date prodictedDate, int productionOrder,
             int customerId, int crudOperation, String RollNumber, String rollLength, String rollWeight,
             String operatorName,
-            String shift, String salesOfficer, String adminId) {
+            String shift, String salesOfficer, String adminId, int productType) {
         return adminRepo.postcurrentprocess(Jobid, batchid, itemWidth, itemLength, itemThikness,
                 strappingColor, printedorUnprinted, strappingPrintColor, corePrintedorUnprinted, strappingType,
                 batchStart, batchEnd,
                 productId, LineId, prodictedDate, productionOrder,
                 customerId, crudOperation, RollNumber, rollLength, rollWeight, operatorName,
-                shift, salesOfficer, adminId);
+                shift, salesOfficer, adminId, productType);
     }
 
     // get current process data
@@ -111,11 +111,11 @@ public class AdminService {
     // device reg curd
     public List<Map<ActiveObjectMap.Key, Value>> DeviceRegistration(String lineId, String machineId_2,
             String machineName, String machineDescription, String deviceId, String parameterId, String des,
-            int isitalarmPara, int completed_prod_count, int isitstarterValue, int minVal, int maxVal,
+            int isitalarmPara, int completed_prod_count, int isitstarterValue, int minValPro1, int maxValPro1, int minValPro2, int maxValPro2,int minValPro3, int maxValPro3,int minValPro4, int maxValPro4,
             String mesuringUnit, String massage, String deviceLocation, String deviceIpAddress, String deviceName,
             int crudOperation) {
         return adminRepo.DeviceRegistration(lineId, machineId_2, machineName, machineDescription, deviceId, parameterId,
-                des, isitalarmPara, completed_prod_count, isitstarterValue, minVal, maxVal, mesuringUnit, massage,
+                des, isitalarmPara, completed_prod_count, isitstarterValue, minValPro1, maxValPro1, minValPro2, maxValPro2, minValPro3, maxValPro3, minValPro4, maxValPro4, mesuringUnit, massage,
                 deviceLocation, deviceIpAddress, deviceName, crudOperation);
     }
 

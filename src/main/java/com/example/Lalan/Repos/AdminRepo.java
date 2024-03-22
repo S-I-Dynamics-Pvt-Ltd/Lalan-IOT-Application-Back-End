@@ -70,7 +70,7 @@ public interface AdminRepo extends JpaRepository<AdminEntity, Integer> {
         // int customerId, int crudOperation, String RollNumber, String rollLength,
         // String rollWeight, String adminId);
 
-        public static final String sqlquerypart8 = "call insert_line(?1 , ?2 , ?3, ?4 , ?5 , ?6 , ?7 , ?8, ?9, ?10, ?11, ?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?24,?25)";
+        public static final String sqlquerypart8 = "call insert_line(?1 , ?2 , ?3, ?4 , ?5 , ?6 , ?7 , ?8, ?9, ?10, ?11, ?12,?13,?14,?15,?16,?17,?18,?19,?20,?21,?22,?23,?24,?25,?26)";
 
         @Query(value = sqlquerypart8, nativeQuery = true)
         public List<Map<ActiveObjectMap.Key, Value>> postcurrentprocess(String Jobid, String batchid, String itemWidth,
@@ -81,7 +81,7 @@ public interface AdminRepo extends JpaRepository<AdminEntity, Integer> {
                         String productId, String LineId, Date prodictedDate, int productionOrder,
                         int customerId, int crudOperation, String RollNumber, String rollLength, String rollWeight,
                         String operatorName,
-                        String shift, String salesOfficer, String adminId);
+                        String shift, String salesOfficer, String adminId, int productType);
 
         // get all current process data
         public static final String sqlquerypart9 = "call sp_Getallprocess(?1)";
@@ -96,12 +96,12 @@ public interface AdminRepo extends JpaRepository<AdminEntity, Integer> {
         // public Map<ActiveObjectMap.Key, Value> getLineColors();
 
         // get device reg crud
-        public static final String sqlquerypart11 = "call sp_DeviceRegistration(?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)";
+        public static final String sqlquerypart11 = "call sp_DeviceRegistration(?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18, ?19, ?20, ?21, ?22, ?23, ?24)";
 
         @Query(value = sqlquerypart11, nativeQuery = true)
         public List<Map<ActiveObjectMap.Key, Value>> DeviceRegistration(String lineId, String machineId_2,
                         String machineName, String machineDescription, String deviceId, String parameterId, String des,
-                        int isitalarmPara, int completed_prod_count, int isitstarterValue, int minVal, int maxVal,
+                        int isitalarmPara, int completed_prod_count, int isitstarterValue, int minValPro1, int maxValPro1,int minValPro2, int maxValPro2, int minValPro3, int maxValPro3, int minValPro4, int maxValPro4,
                         String mesuringUnit,
                         String massage, String deviceLocation, String deviceIpAddress, String deviceName,
                         int crudOperation);
